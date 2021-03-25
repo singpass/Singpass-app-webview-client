@@ -16,7 +16,6 @@ fun LibraryExtension.libraryBuildConfigs(
 ) {
 
     sourceSets {
-
         maybeCreate(FLAVOR_PRODUCTION).java.srcDirs("build/generated/source/buildConfig/$FLAVOR_PRODUCTION")
         maybeCreate(FLAVOR_STAGING).java.srcDirs("build/generated/source/buildConfig/$FLAVOR_STAGING")
     }

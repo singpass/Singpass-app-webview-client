@@ -1,3 +1,4 @@
+import sg.ndi.build.Dependencies.testing
 import sg.ndi.build.libraryBuildConfigs
 
 plugins {
@@ -24,4 +25,6 @@ dependencies {
 
     implementation(sg.ndi.build.Dependencies.KOTLIN_STANDARD_LIB)
     implementation(sg.ndi.build.Dependencies.ANDROIDX_WEBKIT)
+
+    testing()
 }
