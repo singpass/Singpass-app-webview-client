@@ -1,0 +1,21 @@
+root = true
+
+[*.{kt,kts}]
+
+disabled_rules=no-trailing-spaces
+
+# possible values: number (e.g. 2), "unset" (makes ktlint ignore indentation completely)
+indent_size=4
+# ktlint plugin has issues auto-formatting tabs to spaces
+# Even after running Android Studio auto-format to tabs,
+#   ktlintCheck will still fail the indent checks
+# So leaving indent style as `space`
+indent_style=space
+max_line_length=150
+
+[{**/test*/**.kt,**/*Dao.kt,**/*DB.kt,**/build.gradle.kts}]
+# String literals will trigger a max line length failure
+# OFF for tests (String data inputs)
+# OFF for Dao / DB (SQL statements)
+# OFF for app/build.gradle.kts (String buildConfig fields)
+max_line_length=off
