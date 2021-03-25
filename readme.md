@@ -6,7 +6,7 @@
 
 # Usage
 
-This section describes what the library provides and how to utilise it.
+This section describes what the library provides and how to use it.
 
 ### SingpassWebViewClient
 ---
