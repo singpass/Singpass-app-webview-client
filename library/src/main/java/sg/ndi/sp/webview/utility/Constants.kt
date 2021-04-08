@@ -1,3 +1,7 @@
+/**
+ * @author Kenneth Leong
+ */
+
 package sg.ndi.sp.webview.utility
 
 internal object Constants {

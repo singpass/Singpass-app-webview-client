@@ -1,3 +1,7 @@
+/**
+ * @author Kenneth Leong
+ */
+
 package sg.ndi.sp.webview.utility
 
 import android.content.Context
@@ -17,6 +21,12 @@ import sg.ndi.sp.webview.utility.Constants.TRIGGER_URL
 
 object UrlHandler {
 
+    /**
+     * Function that determines if a uri is a Singpass uri
+     *
+     * @param uri The uri to be tested
+     * @return Boolean value true if uri argument is a Singpass uri
+     */
     fun isSingpassQrCode(uri: Uri): Boolean {
 
         val scheme = uri.scheme
@@ -45,6 +55,12 @@ object UrlHandler {
         return schemeValid && hostValid && pathValid
     }
 
+    /**
+     * Function that determines if a url String is a Singpass url
+     *
+     * @param url The url string to be tested
+     * @return Boolean value true if uri argument is a Singpass url
+     */
     fun isSingpassQrCode(url: String): Boolean {
         val uri = Uri.parse(url)
         return isSingpassQrCode(uri)
@@ -54,8 +70,9 @@ object UrlHandler {
      *
      * this function should only be called after checking the uri via [isSingpassQrCode]
      *
-     * @param uri - the uri to be checked
-     * @param context - the current activity context
+     * @param uri the uri to be checked
+     * @param context the current activity context
+     * @param view the webView which will be loaded witth he fallback url, this argument is nullable
      */
     fun handleSingpassQrCode(uri: Uri, context: Context, view: WebView?) {
 
@@ -119,6 +136,10 @@ object UrlHandler {
     /**
      *
      * this function should only be called after checking the uri via [isSingpassQrCode]
+     *
+     * @param url the url String to be checked
+     * @param context the current activity context
+     * @param view the webView which will be loaded witth he fallback url, this argument is nullable
      */
     fun handleSingpassQrCode(url: String, context: Context, view: WebView?) {
         val uri = Uri.parse(url)

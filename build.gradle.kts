@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven(url = "https://dl.bintray.com/kotlin/dokka")
     }
     dependencies {
         classpath(sg.ndi.build.Dependencies.PROJECT.ANDROID_GRADLE_CLASSPATH)

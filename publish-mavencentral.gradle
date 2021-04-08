@@ -1,6 +1,3 @@
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
-
 task androidSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
     if (project.plugins.findPlugin("com.android.library")) {
@@ -13,8 +10,21 @@ task androidSourcesJar(type: Jar) {
         from sourceSets.main.kotlin.srcDirs
     }
 }
+
+tasks.withType(dokkaHtmlPartial.getClass()).configureEach {
+    pluginsMapConfiguration.set(
+            ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+    )
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
 artifacts {
     archives androidSourcesJar
+    archives javadocJar
 }
 
 group = PUBLISH_GROUP_ID
@@ -59,7 +69,7 @@ publishing {
             }
 
             artifact androidSourcesJar
-//            artifact javadocJar
+            artifact javadocJar
 
             pom {
                 name = PUBLISH_ARTIFACT_ID
@@ -68,7 +78,7 @@ publishing {
                 licenses {
                     license {
                         name = 'License'
-                        url = 'https://github.com/GetStream/stream-chat-android/blob/main/LICENSE'
+                        url = 'https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt'
                     }
                 }
                 developers {
@@ -100,8 +110,8 @@ publishing {
         maven {
             name = "sonatype"
 
-            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
             credentials {

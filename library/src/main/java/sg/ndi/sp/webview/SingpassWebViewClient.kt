@@ -1,3 +1,7 @@
+/**
+ * @author Kenneth Leong
+ */
+
 package sg.ndi.sp.webview
 
 import android.graphics.Bitmap
@@ -19,14 +23,78 @@ import androidx.webkit.WebResourceErrorCompat
 import androidx.webkit.WebViewClientCompat
 import sg.ndi.sp.webview.utility.UrlHandler
 
+/**
+ * Webview client which will automatically handle Singpass links and launch
+ * Singpass app. Extend this class and run the super method in `shouldOverrideUrlLoading`.
+ *
+ * Example usage below
+ * ```java
+ * // create your WebViewClient by inheriting from SingpassWebViewClient
+ * class CustomWebViewClient extends SingpassWebViewClient {
+ *
+ *  // For devices api 21 and above
+ *  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+ *  @Override
+ *  public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull WebResourceRequest request) {
+ *      boolean handled = super.shouldOverrideUrlLoading(view, request);
+ *
+ *      // if handled == true, means that url can be opened by Singpass app
+ *      if (handled) {
+ *          // return true to signal to webview that url is being handled already
+ *          return true;
+ *      }
+ *      // if handled == false, means that url is NOT a Singpass app url
+ *      else {
+ *          // do your own handling if needed
+ *          ... your own handling code for any other urls ...
+ *          // return true if you have handled and urls yourself
+ *          // or false if webview should proceed to handle it by default
+ *          return false;
+ *      }
+ * }
+ * 
+ *  // override this function only if you need to handle devices api 19 to 20
+ *  // this will ONLY be called on devices api 20 and below
+ *  @Override
+ *  public boolean shouldOverrideUrlLoading(@Nullable WebView view, @Nullable String url) {
+ *      boolean handled = super.shouldOverrideUrlLoading(view, request);
+ * 
+ *      // if handled == true, means that url can be opened by Singpass app
+ *      if (handled) {
+ *          // return true to signal to webview that url is being handled already
+ *          return true;
+ *      }
+ *      // if handled == false, means that url is NOT a Singpass app url
+ *      else {
+ *          // do your own handling if needed
+ *          ... your own handling code for any other urls ...
+ *          // return true if you have handled and urls yourself
+ *          // or false if webview should proceed to handle it by default
+ *          return false;
+ *          }
+ *      }
+ * }
+ * 
+ *  // in your activity or fragment
+ *  WebView webView = findViewById(R.id.wvWebview);
+ *  webView.setWebViewClient(new CustomWebViewClient());
+ * 
+ * ```
+ */
 open class SingpassWebViewClient : WebViewClientCompat() {
 
+    /*
+        Override this function and call `super.shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest)` to detect and handle Singpass Urls
+     */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
         val uri = request.url
         return UrlHandler.handleableBySingpassApp(uri, view)
     }
 
+    /*
+       Override this function and call `shouldOverrideUrlLoading(view: WebView?, url: String?)` to detect and handle Singpass Urls
+    */
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
         return if (view == null || url.isNullOrBlank()) false
         else UrlHandler.handleableBySingpassApp(Uri.parse(url), view)

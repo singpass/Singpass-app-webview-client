@@ -7,11 +7,14 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("maven-publish")
+    id("signing")
+    id("org.jetbrains.dokka") version "1.4.30"
 }
 
 ext {
     set("PUBLISH_GROUP_ID", "io.github.singpass")
-    set("PUBLISH_VERSION", "0.0.1-alpha")
+    set("PUBLISH_VERSION", "0.0.2-alpha")
     set("PUBLISH_ARTIFACT_ID", "singpass-webview-client")
     set("aarName", "SpWebViewClientLib")
 }
@@ -41,6 +44,5 @@ dependencies {
 
     implementation(sg.ndi.build.Dependencies.KOTLIN_STANDARD_LIB)
     implementation(sg.ndi.build.Dependencies.ANDROIDX_WEBKIT)
-
     testing()
 }
