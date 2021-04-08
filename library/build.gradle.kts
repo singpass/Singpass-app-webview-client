@@ -16,6 +16,7 @@ ext {
     set("PUBLISH_GROUP_ID", "io.github.singpass")
     set("PUBLISH_VERSION", "0.0.2-alpha")
     set("PUBLISH_ARTIFACT_ID", "singpass-webview-client")
+    set("STAGING_PUBLISH_ARTIFACT_ID", "singpass-webview-client-staging")
     set("aarName", "SpWebViewClientLib")
 }
 

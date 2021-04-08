@@ -52,20 +52,22 @@ publishing {
     publications {
         release(MavenPublication) {
             groupId PUBLISH_GROUP_ID
-            artifactId PUBLISH_ARTIFACT_ID
+
             version PUBLISH_VERSION
             if (project.plugins.findPlugin("com.android.library")) {
 
                 File aar = project.rootProject.file("$buildDir/outputs/aar/${aarName}.aar")
                 if(aar.exists()) {
+                    artifactId PUBLISH_ARTIFACT_ID
                     artifact("$buildDir/outputs/aar/${aarName}.aar")
                 }
                 else {
+                    artifactId STAGING_PUBLISH_ARTIFACT_ID
                     artifact("$buildDir/outputs/aar/$aarName-stg.aar")
                 }
 
             } else {
-                artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+                throw new GradleException('Not a library - error occurred')
             }
 
             artifact androidSourcesJar
