@@ -4,19 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.WebView
-import sg.ndi.sp.webview.BuildConfig.SPM_APP_ID
 import java.net.URISyntaxException
+import sg.ndi.sp.webview.BuildConfig.SPM_APP_ID
+import sg.ndi.sp.webview.utility.Constants.CHROME_INTENT_FALLBACK_URL
+import sg.ndi.sp.webview.utility.Constants.DEFAULT_FALLBACK_URL
+import sg.ndi.sp.webview.utility.Constants.HTTPS_SCHEME
+import sg.ndi.sp.webview.utility.Constants.INTENT_SCHEME
+import sg.ndi.sp.webview.utility.Constants.LEGACY_TRIGGER_URL
+import sg.ndi.sp.webview.utility.Constants.LEGACY_WWW_TRIGGER_URL
+import sg.ndi.sp.webview.utility.Constants.REQUIRED_PATH_PARAM
+import sg.ndi.sp.webview.utility.Constants.TRIGGER_URL
 
 object UrlHandler {
-
-    private const val INTENT_SCHEME = "intent"
-    private const val HTTPS_SCHEME = "https"
-    private const val LEGACY_TRIGGER_URL = "singpassmobile.sg"
-    private const val LEGACY_WWW_TRIGGER_URL = "www.singpassmobile.sg"
-    private const val TRIGGER_URL = "app.singpass.gov.sg"
-    private const val REQUIRED_PATH_PARAM = "qrlogin"
-    private const val CHROME_INTENT_FALLBACK_URL = "browser_fallback_url"
-    private const val DEFAULT_FALLBACK_URL = "https://app.singpass.gov.sg/qrlogin"
 
     fun isSingpassQrCode(uri: Uri): Boolean {
 

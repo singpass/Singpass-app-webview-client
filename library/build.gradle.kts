@@ -1,4 +1,6 @@
 import sg.ndi.build.Dependencies.testing
+import sg.ndi.build.FLAVOR_PRODUCTION
+import sg.ndi.build.FLAVOR_STAGING
 import sg.ndi.build.libraryBuildConfigs
 
 plugins {
@@ -7,16 +9,30 @@ plugins {
     kotlin("kapt")
 }
 
+ext {
+    set("PUBLISH_GROUP_ID", "io.github.singpass")
+    set("PUBLISH_VERSION", "0.0.1-alpha")
+    set("PUBLISH_ARTIFACT_ID", "singpass-webview-client")
+    set("aarName", "SpWebViewClientLib")
+}
+
+apply(from = "$rootDir/publish-mavencentral.gradle")
+
 android {
     libraryBuildConfigs(project = project)
 
     libraryVariants.all {
         outputs.map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
             .forEach {
-                if (name.contains("release", ignoreCase = true))
-                    it.outputFileName = "SpWebViewClientLib.aar"
-                else
-                    it.outputFileName = "SpWebViewClientLib-$name.aar"
+                if (name.contains("release", ignoreCase = true)) {
+
+                    if (name.contains(FLAVOR_PRODUCTION, ignoreCase = true)) {
+                        it.outputFileName = "${extra.get("aarName")}.aar"
+                    } else {
+                        it.outputFileName = "${extra.get("aarName")}-$FLAVOR_STAGING.aar"
+                    }
+                } else
+                    it.outputFileName = "${extra.get("aarName")}-$name.aar"
             }
     }
 }
