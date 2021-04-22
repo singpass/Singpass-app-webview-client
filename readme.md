@@ -5,15 +5,20 @@
 # Integration
 
 ```
-implementation "io.github.singpass:singpass-webview-client:1.0.0"
+implementation "io.github.singpass:singpass-webview-client:1.1.0"
 ```
 or
 ```
 // The staging library is currently not working properly if you are currently using the staging Singpass app with application `id sg.ndi.sp`
 // This staging variant of the library is to prepare for when Singpass staging app can be installed along side the Prod Singpass app
-implementation "io.github.singpass:singpass-webview-client-staging:1.0.0"
+implementation "io.github.singpass:singpass-webview-client-staging:1.1.0"
 
 ```
+## Supporting Android 11's package visiblity changes
+Version 1.0.0 targets android SDK 29 (Android 10), if you are not ready to support android 11, please use this version.
+Use version 1.1.0 if your application is targeting SDK 30 (Android 11) and above, which has behavioral changes in privacy, more specifically [package visibility](https://developer.android.com/training/package-visibility).
+
+TLDR; Applications targeting Android 11 onwards will require applications to declare specific application id/s that it might be querying the package manager for. Version 1.1.0 will include the `queries` Android manifest element which will be merged into your application's AndroidManifest during the manifest merger phase to enable your application to search for Singpass app to handle app-linking.
 
 # Usage
 

@@ -3,7 +3,7 @@ package sg.ndi.build
 object Versions {
 
     const val MIN_ANDROID_SDK = 19
-    const val TARGET_ANDROID_SDK = 29
+    const val TARGET_ANDROID_SDK = 30
     const val COMPILE_SDK_VERSION = 30
 
     const val ANDROID_GRADLE_PLUGIN = "4.1.3"

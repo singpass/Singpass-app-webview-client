@@ -14,7 +14,7 @@ plugins {
 
 ext {
     set("PUBLISH_GROUP_ID", "io.github.singpass")
-    set("PUBLISH_VERSION", "1.0.0")
+    set("PUBLISH_VERSION", "1.1.0")
     set("PUBLISH_ARTIFACT_ID", "singpass-webview-client")
     set("STAGING_PUBLISH_ARTIFACT_ID", "singpass-webview-client-staging")
     set("aarName", "SpWebViewClientLib")

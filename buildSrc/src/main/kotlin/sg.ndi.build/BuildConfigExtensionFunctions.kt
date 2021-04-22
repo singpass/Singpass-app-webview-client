@@ -36,11 +36,13 @@ fun LibraryExtension.libraryBuildConfigs(
         register(FLAVOR_PRODUCTION) {
             dimension(FLAVOR_DIMENSION_LANDSCAPE)
             setStringBuildConfigField("SPM_APP_ID", "sg.ndi.sp")
+            manifestPlaceholders["SPM_APP_ID"] = "sg.ndi.sp"
         }
 
         register(FLAVOR_STAGING) {
             dimension(FLAVOR_DIMENSION_LANDSCAPE)
             setStringBuildConfigField("SPM_APP_ID", "sg.ndi.sp.dev")
+            manifestPlaceholders["SPM_APP_ID"] = "sg.ndi.sp.dev"
         }
     }
 
