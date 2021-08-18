@@ -5,13 +5,13 @@
 # Integration
 
 ```
-implementation "io.github.singpass:singpass-webview-client:1.1.0"
+implementation "io.github.singpass:singpass-webview-client:1.2.0"
 ```
 or
 ```
 // The staging library is currently not working properly if you are currently using the staging Singpass app with application `id sg.ndi.sp`
 // This staging variant of the library is to prepare for when Singpass staging app can be installed along side the Prod Singpass app
-implementation "io.github.singpass:singpass-webview-client-staging:1.1.0"
+implementation "io.github.singpass:singpass-webview-client-staging:1.2.0"
 
 ```
 ## Supporting Android 11's package visiblity changes
