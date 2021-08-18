@@ -6,7 +6,7 @@ object Versions {
     const val TARGET_ANDROID_SDK = 30
     const val COMPILE_SDK_VERSION = 30
 
-    const val ANDROID_GRADLE_PLUGIN = "4.1.3"
+    const val ANDROID_GRADLE_PLUGIN = "7.0.0"
 
     object Androidx {
         const val WEBKIT = "1.4.0"
@@ -18,6 +18,7 @@ object Versions {
     }
 
     object Kotlin {
-        const val KOTLIN = "1.4.31"
+        const val KOTLIN = "1.5.21"
+        const val DOKKA = "1.4.32"
     }
 }

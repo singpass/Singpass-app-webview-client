@@ -1,0 +1,93 @@
+[versions]
+
+# region Android Project
+android-gradle-plugin = "7.0.0"
+# endregion
+
+# region Kotlin dependencies
+kotlin-core = "1.5.21"
+kotlinx = "1.5.1"
+# endregion
+
+
+# region Androidx dependencies
+androidx-webkit = "1.4.0"
+
+androidx-test-uiautomator = "2.2.0"
+androidx-test-espresso = "3.4.0"
+androidx-test-core = "1.4.0"
+androidx-test-extension = "1.1.3"
+
+# endregion
+
+dokka = "1.4.32"
+
+# region Testing dependencies
+dex-maker-mockito = "2.28.1"
+mockk = "1.10.2"
+junit = "4.13-rc-2"
+robolectric = "4.4"
+# endregion
+
+ktlint = "10.1.0"
+
+[libraries]
+
+android-gradle-plugin-classpath = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
+
+# region Kotlin dependencies
+kotlin-gradle-plugin-classpath = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-core" }
+# since kotlin 1.4+, this import is not longer needed refer to https://kotlinlang.org/docs/whatsnew14.html#dependency-on-the-standard-library-added-by-default
+kotlin-standard-lib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-core" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-core" }
+# endregion
+
+
+androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "androidx-webkit" }
+
+# androidx test
+androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
+androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso" }
+androidx-test-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidx-test-espresso" }
+androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test-core" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-core" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-core" }
+androidx-test-extension-junitktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-extension" }
+androidx-test-extension-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-extension" }
+# endregion
+
+ktlint-plugin-classpath = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
+
+# region Testing dependenceis
+test-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+dex-maker-mockito = { module = "com.linkedin.dexmaker:dexmaker-mockito-inline-extended", version.ref = "dex-maker-mockito" }
+roboletric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+# endregion
+
+[bundles]
+test-impl = [
+    "test-mockk",
+    "androidx-test-extension-junitktx",
+    "androidx-test-extension-junit",
+]
+
+android-test-impl = [
+    "dex-maker-mockito",
+    "androidx-test-rules",
+    "androidx-test-runner",
+    "androidx-test-core-ktx",
+    "androidx-test-espresso-intents",
+    "androidx-test-espresso-core",
+    "androidx-test-uiautomator"
+]
+
+[plugins]
+ktlint-no-version-identifier = { id = "org.jlleitschuh.gradle.ktlint" }
+ktlint-with-version-identifier = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+android-library-module = { id = "com.android.library" }
+jacoco = { id = "jacoco" }
+kotlin-android = { id = "android" }
+kotlin-kapt = { id = "kapt" }
+jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+maven-publish = { id = "maven-publish" }
+signing = { id = "signing" }

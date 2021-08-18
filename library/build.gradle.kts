@@ -1,20 +1,19 @@
-import sg.ndi.build.Dependencies.testing
 import sg.ndi.build.FLAVOR_PRODUCTION
 import sg.ndi.build.FLAVOR_STAGING
 import sg.ndi.build.libraryBuildConfigs
 
 plugins {
-    id("com.android.library")
-    kotlin("android")
-    kotlin("kapt")
-    id("maven-publish")
-    id("signing")
-    id("org.jetbrains.dokka") version "1.4.30"
+    id(libs.plugins.android.library.module.get().pluginId)
+    kotlin(libs.plugins.kotlin.android.get().pluginId)
+    kotlin(libs.plugins.kotlin.kapt.get().pluginId)
+    id(libs.plugins.maven.publish.get().pluginId)
+    id(libs.plugins.signing.get().pluginId)
+    alias(libs.plugins.jetbrains.dokka)
 }
 
 ext {
     set("PUBLISH_GROUP_ID", "io.github.singpass")
-    set("PUBLISH_VERSION", "1.1.0")
+    set("PUBLISH_VERSION", "1.2.0")
     set("PUBLISH_ARTIFACT_ID", "singpass-webview-client")
     set("STAGING_PUBLISH_ARTIFACT_ID", "singpass-webview-client-staging")
     set("aarName", "SpWebViewClientLib")
@@ -42,8 +41,7 @@ android {
 }
 
 dependencies {
-
-    implementation(sg.ndi.build.Dependencies.KOTLIN_STANDARD_LIB)
-    implementation(sg.ndi.build.Dependencies.ANDROIDX_WEBKIT)
-    testing()
+    implementation(libs.androidx.webkit)
+    testImplementation(libs.bundles.test.impl)
+    androidTestImplementation(libs.bundles.android.test.impl)
 }
