@@ -16,3 +16,4 @@
 local.properties
 /library/build
 /buildSrc/build
+/*.gpg

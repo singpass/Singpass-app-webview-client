@@ -1,7 +1,7 @@
 package sg.ndi.build
 
 import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.dsl.DefaultConfig
+import com.android.build.api.dsl.DefaultConfig
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -29,18 +29,18 @@ fun LibraryExtension.libraryBuildConfigs(
         minSdk = Versions.MIN_ANDROID_SDK
         targetSdk = Versions.TARGET_ANDROID_SDK
 
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     productFlavors {
         register(FLAVOR_PRODUCTION) {
-            dimension(FLAVOR_DIMENSION_LANDSCAPE)
+            dimension = FLAVOR_DIMENSION_LANDSCAPE
             setStringBuildConfigField("SPM_APP_ID", "sg.ndi.sp")
             manifestPlaceholders["SPM_APP_ID"] = "sg.ndi.sp"
         }
 
         register(FLAVOR_STAGING) {
-            dimension(FLAVOR_DIMENSION_LANDSCAPE)
+            dimension = FLAVOR_DIMENSION_LANDSCAPE
             setStringBuildConfigField("SPM_APP_ID", "sg.ndi.sp.dev")
             manifestPlaceholders["SPM_APP_ID"] = "sg.ndi.sp.dev"
         }

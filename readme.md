@@ -93,3 +93,7 @@ This utility function takes in either a `Uri` or a `String` and return a `boolea
 #### UrlHandler.handleSingpassQrCode
 
 This utility function takes in either `Uri` or `String`, `Context` and optionally a `Webview`. This will parse the uri or url string and either open up Singpass app, or load the fallback url if Singpass App is not installed (if webview argument is not null). Internally `SingpassWebViewClient` uses `handleSingpassQrCode`. this function should be called after checking if the url is a Singpass supported url by caling `UrlHandler.isSingpassQrCode` first.
+
+#### UrlHandler.getFallbackUrl
+This utility function takes in either a `Uri` or a `String` and returns a `String` value of the derived fall back url from the `uri` or `String` url.
+

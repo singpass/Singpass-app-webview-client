@@ -11,12 +11,13 @@ import android.webkit.WebView
 import java.net.URISyntaxException
 import sg.ndi.sp.webview.BuildConfig.SPM_APP_ID
 import sg.ndi.sp.webview.utility.Constants.CHROME_INTENT_FALLBACK_URL
+import sg.ndi.sp.webview.utility.Constants.DEFAULT_FALLBACK_BASE_URL
 import sg.ndi.sp.webview.utility.Constants.DEFAULT_FALLBACK_URL
 import sg.ndi.sp.webview.utility.Constants.HTTPS_SCHEME
 import sg.ndi.sp.webview.utility.Constants.INTENT_SCHEME
 import sg.ndi.sp.webview.utility.Constants.LEGACY_TRIGGER_URL
 import sg.ndi.sp.webview.utility.Constants.LEGACY_WWW_TRIGGER_URL
-import sg.ndi.sp.webview.utility.Constants.REQUIRED_PATH_PARAM
+import sg.ndi.sp.webview.utility.Constants.REQUIRED_PATH_PARAMS
 import sg.ndi.sp.webview.utility.Constants.TRIGGER_URL
 
 object UrlHandler {
@@ -50,8 +51,8 @@ object UrlHandler {
             host.equals(TRIGGER_URL, ignoreCase = true)
         
         /** if path is [REQUIRED_PATH_PARAM] */
-        val pathValid = path.equals(REQUIRED_PATH_PARAM, ignoreCase = true)
-        
+        val pathValid = REQUIRED_PATH_PARAMS.contains(path.lowercase())
+
         return schemeValid && hostValid && pathValid
     }
 
@@ -96,14 +97,14 @@ object UrlHandler {
                     view?.run {
                         val fallbackUrl = intent.getStringExtra(CHROME_INTENT_FALLBACK_URL)
                         if (fallbackUrl.isNullOrBlank())
-                            loadUrl(DEFAULT_FALLBACK_URL)
+                            loadUrl(getFallbackUrl(uri))
                         else
                             loadUrl(fallbackUrl)
                     }
                 }
             } catch (e: URISyntaxException) {
 //                Uri parse exception, try to load Singpass app fallback landing page in webview
-                view?.loadUrl(DEFAULT_FALLBACK_URL)
+                view?.loadUrl(getFallbackUrl(uri))
             }
         } else {
             val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -125,10 +126,10 @@ object UrlHandler {
                     intent.setPackage(SPM_APP_ID)
                     context.startActivity(intent)
                 } else {
-                    view?.loadUrl(DEFAULT_FALLBACK_URL)
+                    view?.loadUrl(getFallbackUrl(uri))
                 }
             } else {
-                view?.loadUrl(DEFAULT_FALLBACK_URL)
+                view?.loadUrl(getFallbackUrl(uri))
             }
         }
     }
@@ -158,4 +159,47 @@ object UrlHandler {
 //            Return true if this function handled the URL
         return true
     }
+
+    /**
+     * This functions returns the appropriate fallback URL in the
+     * case where Singpass app is not installed or un-launchable
+     *
+     * @param uri the uri to be checked
+     */
+    fun getFallbackUrl(uri: Uri): String {
+
+        val scheme = uri.scheme
+        val pathSegments = uri.pathSegments
+        val host = uri.host
+
+        if (scheme.isNullOrBlank() || pathSegments.isNullOrEmpty() || host.isNullOrBlank())
+            return DEFAULT_FALLBACK_URL
+
+        if (pathSegments.size > 1)
+            return DEFAULT_FALLBACK_URL
+
+        val path = pathSegments[0]
+        var fallbackUrl = DEFAULT_FALLBACK_URL
+
+        REQUIRED_PATH_PARAMS.forEach { validPath ->
+            if (validPath.equals(path, true)) {
+                fallbackUrl = DEFAULT_FALLBACK_BASE_URL.format(path)
+                return@forEach
+            }
+        }
+
+        return fallbackUrl
+    }
+
+    /**
+     * This functions returns the appropriate fallback URL in the
+     * case where Singpass app is not installed or un-launchable
+     *
+     * @param url the url string to be checked
+     */
+    fun getFallbackUrl(url: String): String {
+        val uri = Uri.parse(url)
+        return getFallbackUrl(uri)
+    }
+
 }
