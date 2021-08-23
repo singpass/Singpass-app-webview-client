@@ -47,7 +47,6 @@ TLDR; Applications targeting Android 11 onwards will require applications to dec
 This section describes what the library provides and how to use it.
 
 ## SingpassWebViewClient
----
 
 `SingpassWebViewClient` is extended from `androidx.webViewClientCompat` with the added functionality of detecting Singpass app supported urls and handling of opening up Singpass app or if Singpass app is not installed on the device, loading the fallback url. Below is a code snippet for sample usage.
 
