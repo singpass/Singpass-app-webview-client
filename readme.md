@@ -105,19 +105,15 @@ webView.setWebViewClient(new CustomWebViewClient());
 ```
 ## Utility Functions
 ### UrlHandler
----
 If you prefer to handle the url yourself or your WebViewClient is not able to inherit `SingpassWebViewClient`, you can use the utility functions in `UrlHandler` class instead.
 
 #### UrlHandler.isSingpassQrCode( Uri/String )
-------------------------------------
 This utility function takes in either a `Uri` or a `String` and return a `boolean` value indicating if the input is a Singpass app url. Internally `SingpassWebViewClient` uses `isSingpassQrCode`.
 
 #### UrlHandler.handleSingpassQrCode( Uri/String, Context, Webview)
-----------------------------------------
 This utility function takes in either `Uri` or `String`, `Context` and optionally a `Webview`. This will parse the uri or url string and either open up Singpass app, or load the fallback url if Singpass App is not installed (if webview argument is not null). Internally `SingpassWebViewClient` uses `handleSingpassQrCode`. this function should be called after checking if the url is a Singpass supported url by caling `UrlHandler.isSingpassQrCode` first.
 
 #### UrlHandler.getFallbackUrl( Uri/String )
----------------------------------
 This utility function takes in either a `Uri` or a `String` and returns a `String` value of the derived fall back url from the `uri` or `String` url.
 
 ## License
