@@ -5,7 +5,7 @@ Table of Contents
   * [Integration](#Integration)
     * [Production](#Latest-version)
     * [Staging](#Latest-staging-version)
-  * [Target SDK Android 11 and above](#Targeting-SDK-30-(Android 11)-and-above)
+  * [Target SDK Android 11 and above](#Targeting-SDK-30-Android 11-and-above)
   * [Usage](#Usage)
     * [SingpassWebViewClient](#SingpassWebViewClient)
     * [Utility Functions](#Utility-Functions)
@@ -27,6 +27,7 @@ or
 
 #### Latest staging version
 [ ![version](https://img.shields.io/maven-central/v/io.github.singpass/singpass-webview-client-staging?style=for-the-badge) ](https://repo1.maven.org/maven2/io/github/singpass/singpass-webview-client-staging)
+
 The staging library is currently not working properly if you are currently using the existing staging Singpass app with application id `sg.ndi.sp`.
 This staging variant of the library is to prepare for when Singpass staging app can be installed along side the Production Singpass app on the same device.
 **DO NOT USE THIS AT THIS POINT OF TIME**
