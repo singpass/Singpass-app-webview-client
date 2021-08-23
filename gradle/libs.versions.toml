@@ -1,7 +1,7 @@
 [versions]
 
 # region Android Project
-android-gradle-plugin = "7.0.0"
+android-gradle-plugin = "7.0.1"
 # endregion
 
 # region Kotlin dependencies
@@ -26,7 +26,7 @@ dokka = "1.4.32"
 dex-maker-mockito = "2.28.1"
 mockk = "1.10.2"
 junit = "4.13-rc-2"
-robolectric = "4.4"
+robolectric = "4.6.1"
 # endregion
 
 ktlint = "10.1.0"
@@ -69,6 +69,7 @@ test-impl = [
     "test-mockk",
     "androidx-test-extension-junitktx",
     "androidx-test-extension-junit",
+    "roboletric"
 ]
 
 android-test-impl = [

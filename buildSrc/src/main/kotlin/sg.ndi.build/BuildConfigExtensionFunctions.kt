@@ -56,6 +56,12 @@ fun LibraryExtension.libraryBuildConfigs(
         targetCompatibility(JavaVersion.VERSION_1_8)
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     project.tasks.withType(KotlinCompile::class.java).configureEach {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
