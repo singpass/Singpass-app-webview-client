@@ -5,7 +5,7 @@ Table of Contents
   * [Integration](#Integration)
     * [Production](#Latest-version)
     * [Staging](#Latest-staging-version)
-  * [Target SDK Android 11 and above](#Targeting-SDK-30-Android 11-and-above)
+  * [Target SDK Android 11 and above](#Targeting-Sdk-30-Android-11-and-above)
   * [Usage](#Usage)
     * [SingpassWebViewClient](#SingpassWebViewClient)
     * [Utility Functions](#Utility-Functions)
@@ -46,7 +46,7 @@ TLDR; Applications targeting Android 11 onwards will require applications to dec
 
 This section describes what the library provides and how to use it.
 
-### SingpassWebViewClient
+## SingpassWebViewClient
 ---
 
 `SingpassWebViewClient` is extended from `androidx.webViewClientCompat` with the added functionality of detecting Singpass app supported urls and handling of opening up Singpass app or if Singpass app is not installed on the device, loading the fallback url. Below is a code snippet for sample usage.
@@ -103,21 +103,22 @@ WebView webView = findViewById(R.id.wvWebview);
 webView.setWebViewClient(new CustomWebViewClient());
 
 ```
-### Utility Functions
-#### UrlHandler
+## Utility Functions
+### UrlHandler
 ---
 If you prefer to handle the url yourself or your WebViewClient is not able to inherit `SingpassWebViewClient`, you can use the utility functions in `UrlHandler` class instead.
 
-#### UrlHandler.isSingpassQrCode
-
+#### UrlHandler.isSingpassQrCode( Uri/String )
+------------------------------------
 This utility function takes in either a `Uri` or a `String` and return a `boolean` value indicating if the input is a Singpass app url. Internally `SingpassWebViewClient` uses `isSingpassQrCode`.
 
-#### UrlHandler.handleSingpassQrCode
-
+#### UrlHandler.handleSingpassQrCode( Uri/String, Context, Webview)
+----------------------------------------
 This utility function takes in either `Uri` or `String`, `Context` and optionally a `Webview`. This will parse the uri or url string and either open up Singpass app, or load the fallback url if Singpass App is not installed (if webview argument is not null). Internally `SingpassWebViewClient` uses `handleSingpassQrCode`. this function should be called after checking if the url is a Singpass supported url by caling `UrlHandler.isSingpassQrCode` first.
 
-#### UrlHandler.getFallbackUrl
+#### UrlHandler.getFallbackUrl( Uri/String )
+---------------------------------
 This utility function takes in either a `Uri` or a `String` and returns a `String` value of the derived fall back url from the `uri` or `String` url.
 
-### License
+## License
 [![#https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt](https://img.shields.io/github/license/singpass/Singpass-app-webview-client)](https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt)
