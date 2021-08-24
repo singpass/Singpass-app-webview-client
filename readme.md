@@ -107,15 +107,19 @@ webView.setWebViewClient(new CustomWebViewClient());
 If you prefer to handle the url yourself or your WebViewClient is not able to inherit `SingpassWebViewClient`, you can use the utility functions in `UrlHandler` class instead.
 
 #### **UrlHandler.handleableBySingpassApp( Uri/String, WebView )**
-This utility function takes in either a `Uri` or a `String` and returns a `boolean` value `true` if the Uri/String is a Singpass app QR and is handled or false if Uri/String is not a Singpass app QR. Internally [`SingpassWebViewClient`](#SingpassWebViewClient) uses [`handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView). 
+---------------	
+This utility function takes in either a `Uri` or a `String` and returns a `boolean` value `true` if the Uri/String is a Singpass app QR and is handled or `false` if Uri/String is not a Singpass app QR. Internally [`SingpassWebViewClient`](#SingpassWebViewClient) uses [`Urlhandler.handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView). 
 
 #### **UrlHandler.isSingpassQrCode( Uri/String )**
-This utility function takes in either a `Uri` or a `String` and return a `boolean` value indicating if the input is a Singpass app url or not. This function is called internally by [`handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
+---------------	
+This utility function takes in either a `Uri` or a `String` and return a `boolean` value indicating if the input is a Singpass app url or not. This function is called internally by [`UrlHandler.handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
 
 #### **UrlHandler.handleSingpassQrCode( Uri/String, Context, Webview)**
-This utility function takes in either `Uri` or `String`, `Context` and optionally a `Webview`. This will parse the uri or url string and either open up Singpass app, or load the fallback url if Singpass App is not installed (if webview argument is not null). This function should be called after checking if the url is a Singpass supported url by calling `UrlHandler.isSingpassQrCode` first. This function is called internally by [`handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
+---------------	
+This utility function takes in either `Uri` or `String`, `Context` and optionally a `Webview`. This will parse the uri or url string and either open up Singpass app, or load the fallback url if Singpass App is not installed (if `Webview` argument is not null). This function should be called after checking if the url is a Singpass supported url by calling [`UrlHandler.isSingpassQrCode`](#UrlHandlerisSingpassQrCode) first. This function is called internally by [`UrlHandler.handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
 
 #### **UrlHandler.getFallbackUrl( Uri/String )**
+---------------	
 This utility function takes in either a `Uri` or a `String` and returns a `String` value of the derived fall back url from input `uri` or `String` url. This function is called internally by [`handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
 
 ## License
