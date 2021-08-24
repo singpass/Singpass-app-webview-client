@@ -239,6 +239,3 @@ If you prefer to handle the url yourself or your WebViewClient is not able to in
 
 ## License
 [![#LICENSE.txt](https://img.shields.io/github/license/singpass/Singpass-app-webview-client)](https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt)
-
-## License
-[![#LICENSE.txt](https://img.shields.io/github/license/singpass/Singpass-app-webview-client)](https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt)
