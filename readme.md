@@ -108,7 +108,7 @@ If you prefer to handle the url yourself or your WebViewClient is not able to in
 
 #### **UrlHandler.handleableBySingpassApp( Uri/String, WebView )**
 ---------------	
-This utility function takes in either a `Uri` or a `String` and returns a `boolean` value `true` if the Uri/String is a Singpass app QR and is handled or `false` if Uri/String is not a Singpass app QR. Internally [`SingpassWebViewClient`](#SingpassWebViewClient) uses [`Urlhandler.handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView). 
+This utility function takes in either a `Uri` or a `String` and returns a `boolean` value `true` if the Uri/String is a Singpass app QR and is handled or `false` if Uri/String is not a Singpass app QR. Internally [`SingpassWebViewClient`](#SingpassWebViewClient) uses [`Urlhandler.handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
 
 #### **UrlHandler.isSingpassQrCode( Uri/String )**
 ---------------	
@@ -123,4 +123,4 @@ This utility function takes in either `Uri` or `String`, `Context` and optionall
 This utility function takes in either a `Uri` or a `String` and returns a `String` value of the derived fall back url from input `uri` or `String` url. This function is called internally by [`handleableBySingpassApp`](#UrlHandlerhandleableBySingpassApp-UriString-WebView).
 
 ## License
-[![#https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt](https://img.shields.io/github/license/singpass/Singpass-app-webview-client)](https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt)
+[![#LICENSE.txt](https://img.shields.io/github/license/singpass/Singpass-app-webview-client)](https://github.com/singpass/Singpass-app-webview-client/blob/main/LICENSE.txt)
