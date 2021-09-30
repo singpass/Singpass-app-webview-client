@@ -13,7 +13,7 @@ Table of Contents
 
 # About this library
 
-`SingpassWebViewClient` is an extension of `androidx.webViewClientCompat` that handles opening of Singpass app upon clicking on a supported url.
+`SingpassWebViewClient` is an extension of `androidx.webViewClientCompat` that handles opening of Singpass app upon clicking on a supported url. (i.e singpassmobile.sg and app.singpass.gov.sg [current supported combinations](https://github.com/singpass/Singpass-app-webview-client/blob/main/library/src/main/java/sg/ndi/sp/webview/utility/Constants.kt) ) To facilitate the transition to the new domain, mobile applications implementing Singpass logins are highly recommended to adopt this library.
 
 # Integration
 
